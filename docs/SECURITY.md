@@ -250,7 +250,7 @@ password = "bastion"  # Change in production!
 If you discover a security vulnerability in Bastion:
 
 1. **Don't** open a public GitHub issue
-2. **Email:** security@bastion.sh
+2. **Email:** enrique.rubio.developer@gmail.com
 3. **Include:** Details, reproduction steps, potential impact
 
 We aim to respond within 48 hours and provide a timeline for the fix.
