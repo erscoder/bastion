@@ -277,6 +277,8 @@ curl -u bastion:bastion localhost:7575/api/budget/claude-code
 
 ## API reference
 
+> 📄 Full API documentation with request/response examples and SDK snippets: [docs/API.md](docs/API.md)
+
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `GET` | `/api/health` | Health + dependency checks |
