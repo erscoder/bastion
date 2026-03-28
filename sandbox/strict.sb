@@ -1,0 +1,27 @@
+(version 1)
+; Strict profile — maximum isolation, no network, no writes outside /tmp
+(deny default)
+; Allow process execution (only /bin, /usr/bin)
+(allow process-exec (subpath "/bin"))
+(allow process-exec (subpath "/usr/bin"))
+(allow process-fork)
+; Allow reading system directories
+(allow file-read* (literal "/"))
+(allow file-read* (subpath "/bin"))
+(allow file-read* (subpath "/usr"))
+(allow file-read* (subpath "/System"))
+(allow file-read* (subpath "/Library"))
+(allow file-read* (subpath "/private/var"))
+(allow file-read* (subpath "/private/etc"))
+(allow file-read* (subpath "/tmp"))
+(allow file-read* (subpath "/var"))
+(allow file-read* (subpath "/Users"))
+; Allow writes only to /tmp
+(allow file-write* (subpath "/tmp"))
+; No network
+(deny network*)
+; Allow IPC (needed for sh)
+(allow mach*)
+(allow ipc-posix*)
+(allow sysctl-read)
+(allow signal (target self))

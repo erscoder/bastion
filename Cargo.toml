@@ -1,0 +1,80 @@
+[package]
+name = "bastion"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["Enrique Rubio <erscoder@gmail.com>"]
+description = "Native macOS sandbox for AI agents — Bastion"
+repository = "https://github.com/erscoder/bastion"
+homepage = "https://github.com/erscoder/bastion"
+
+[lib]
+name = "bastion"
+path = "src/lib.rs"
+
+[[bin]]
+name = "bastion"
+path = "src/main.rs"
+
+[features]
+default = []
+mcp = ["dep:jsonrpc-core"]
+
+[dependencies]
+# Web framework
+axum = "0.7.9"
+tower = "0.4.13"
+tower-http = { version = "0.5", features = ["cors", "trace", "fs"] }
+hyper = { version = "1.4", features = ["full"] }
+hyper-util = "0.1"
+http = "1.1"
+http-body = "1.0"
+http-body-util = "0.1"
+
+# Async runtime
+tokio = { version = "1.42", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-appender = "0.2"
+
+# UUID for agent IDs
+uuid = { version = "1.11", features = ["v4", "serde"] }
+
+# Async traits
+async-trait = "0.1"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Process management
+portable-pty = "0.8"
+
+# MCP (optional)
+jsonrpc-core = { version = "18", optional = true }
+
+# Utilities
+thiserror = "2.0"
+anyhow = "1.0"
+once_cell = "1.20"
+parking_lot = "0.12"
+base64 = "0.22"
+dirs = "5.0"
+
+[dev-dependencies]
+axum-test = "16"
+
+[target.'cfg(not(target_env = "msvc"))'.dependencies]
+rustix = { version = "0.38", features = ["fs"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

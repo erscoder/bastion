@@ -1,0 +1,30 @@
+(version 1)
+; Default profile — balanced security for general AI agent use
+(deny default)
+; Allow all process execution and forking
+(allow process-exec)
+(allow process-fork)
+; Allow reading system binaries and libraries
+(allow file-read* (literal "/"))
+(allow file-read* (subpath "/bin"))
+(allow file-read* (subpath "/usr"))
+(allow file-read* (subpath "/System"))
+(allow file-read* (subpath "/Library"))
+(allow file-read* (subpath "/private/var"))
+(allow file-read* (subpath "/private/etc"))
+(allow file-read* (subpath "/tmp"))
+(allow file-read* (subpath "/var"))
+; Allow reads in home directories (so getcwd works)
+(allow file-read* (subpath "/Users"))
+; Allow writes only to /tmp
+(allow file-write* (subpath "/tmp"))
+; Allow network
+(allow network*)
+; Allow sysctl reads
+(allow sysctl-read)
+; Allow mach IPC (needed for sh)
+(allow mach*)
+; Allow POSIX IPC
+(allow ipc-posix*)
+; Allow signal sending to self
+(allow signal (target self))

@@ -1,0 +1,3 @@
+(version 1)
+; Permissive profile — development mode, all operations allowed
+(allow default)
